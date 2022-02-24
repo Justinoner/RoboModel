@@ -36,6 +36,7 @@ public class Projectile : MonoBehaviour
         {
             otherHealth.TakeDamage(damageDone);
         }
+        Debug.Log("Collides"+ other.name);
         Destroy(gameObject);
     }
 }

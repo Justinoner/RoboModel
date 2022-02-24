@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127376259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.602}
+  m_LocalPosition: {x: 0, y: 0, z: 0.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8617940307328884824}
@@ -97,7 +97,7 @@ MonoBehaviour:
   damageDone: 10
   RHPoint: {fileID: 1399722489449921184}
   LHPoint: {fileID: 0}
-  firepoint: {fileID: 127376260}
+  firePoint: {fileID: 0}
   projectilePrefab: {fileID: 1076673710214079954, guid: 8f08f34754c47324db3874f50f9f0564, type: 3}
   projectileMoveSpeed: 8
   projectileLifespan: 1.5
@@ -168,7 +168,7 @@ MonoBehaviour:
   damageDone: 10
   RHPoint: {fileID: 0}
   LHPoint: {fileID: 3611550699684498590}
-  firepoint: {fileID: 127376260}
+  firePoint: {fileID: 0}
   projectilePrefab: {fileID: 1076673710214079954, guid: 8f08f34754c47324db3874f50f9f0564, type: 3}
   projectileMoveSpeed: 8
   projectileLifespan: 1.5
@@ -269,8 +269,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.214889, y: 1, z: 1.3756133}
-  m_Center: {x: -0.24592231, y: 0, z: -0.012068212}
+  m_Size: {x: 3.214889, y: 1, z: 1.2181199}
+  m_Center: {x: -0.24592231, y: 0, z: -0.09081495}
 --- !u!114 &-7094952684012499189
 MonoBehaviour:
   m_ObjectHideFlags: 0

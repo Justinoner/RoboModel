@@ -44,6 +44,7 @@ public class Health : MonoBehaviour
     {
         //call the OnTakeDamge event
         OnTakeDamage.Invoke();
+        Debug.Log("damaged" + name + "***"+ amountOfDamage);
 
         //subract health
         currentHealth -= amountOfDamage;
@@ -57,7 +58,7 @@ public class Health : MonoBehaviour
         else
         {
             // don't go over max health
-            currentHealth = Mathf.Max(currentHealth, maxHealth);
+            currentHealth = Mathf.Min(currentHealth, maxHealth);
         }
     }
 }
