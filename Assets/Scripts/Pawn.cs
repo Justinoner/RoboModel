@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pawn : MonoBehaviour
 {
     [Header("Components")]
-    private Animator anim;
+    [HideInInspector] public Animator anim;
 
     [Header("Data")]
     public Weapon weapon;
@@ -28,7 +28,7 @@ public class Pawn : MonoBehaviour
     }
     public void UnequipWeapon()
     {
-        Destroy(weapon.gameObject);
+        //Destroy(weapon.gameObject);
 
         weapon = null;
     }
@@ -39,6 +39,8 @@ public class Pawn : MonoBehaviour
         GameObject newWeapon = Instantiate(weaponPrefabToEquip, weaponMountPoint.position, weaponMountPoint.rotation);
 
         newWeapon.transform.parent = weaponMountPoint;
+        //set weapon in same layer as pawn
+        newWeapon.layer = gameObject.layer;
 
         weapon = newWeapon.GetComponent<Weapon>();
         //todo

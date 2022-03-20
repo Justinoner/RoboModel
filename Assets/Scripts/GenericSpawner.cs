@@ -6,6 +6,7 @@ public class GenericSpawner : MonoBehaviour
 {
     public GameObject objectToSpawm;
     public float respawnTime;
+    public Mesh spawnMesh;
 
     private float countdown;
     private GameObject spawnedObject;
@@ -30,11 +31,22 @@ public class GenericSpawner : MonoBehaviour
             countdown -= Time.deltaTime;
             if (countdown <= 0)
             {
-                spawnedObject = Instantiate(objectToSpawm, transform.position, transform.rotation);
+                spawnedObject = Instantiate(objectToSpawm, transform.position, transform.rotation) as GameObject;
 
                 countdown = respawnTime;
             }
 
         }
+    }
+    private void OnDrawGizmosSelected()
+    {
+        
+
+        Matrix4x4 MyNewCoordinateSystem = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
+        Gizmos.color = Color.Lerp(Color.black, Color.clear, 0.7f);
+        Gizmos.matrix = MyNewCoordinateSystem;
+        Gizmos.DrawMesh(spawnMesh, new Vector3(0, 0, 0), Quaternion.identity);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(Vector3.zero, Vector3.forward);
     }
 }

@@ -14,7 +14,8 @@ public class WeaponPickup : Pickup
 
     // Update is called once per frame
     public override void Update()
-    {   
+    {
+        transform.Rotate(0f, 10f * Time.deltaTime, 0f, Space.Self);
     }
     public override void OnTriggerEnter(Collider other)
     {

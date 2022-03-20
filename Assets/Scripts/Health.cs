@@ -22,8 +22,8 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
 
         //Do find cube
-        LameExplosion exploderTouse = GameObject.Find("Cube").GetComponent<LameExplosion>();
-        OnDie.AddListener(exploderTouse.Explode);
+       // LameExplosion exploderTouse = GameObject.Find("Cube").GetComponent<LameExplosion>();
+        //OnDie.AddListener(exploderTouse.Explode);
         
     }
 

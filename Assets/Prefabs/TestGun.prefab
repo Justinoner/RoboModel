@@ -333,5 +333,5 @@ MonoBehaviour:
   LHPoint: {fileID: 3611550699684498590}
   firePoint: {fileID: 127376260}
   projectilePrefab: {fileID: 1076673710214079954, guid: 8f08f34754c47324db3874f50f9f0564, type: 3}
-  projectileMoveSpeed: 8
-  projectileLifespan: 1.5
+  projectileMoveSpeed: 15
+  projectileLifespan: 1

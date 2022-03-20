@@ -30,6 +30,7 @@ public class LaserRifle : Weapon
         Debug.Log("zap zap zap");
         if (projectileScript != null)
         {
+            projectile.layer = gameObject.layer;
             projectileScript.damageDone = damageDone;
             projectileScript.lifespan = projectileLifespan;
             projectileScript.moveSpeed = projectileMoveSpeed;
