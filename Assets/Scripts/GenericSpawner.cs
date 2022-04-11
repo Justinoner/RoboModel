@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GenericSpawner : MonoBehaviour
 {
-    public GameObject objectToSpawm;
+    public  enum dropTypes { Random, Weighted, PercentWeighted };
+    public dropTypes dropType;
+    public RandomWeightedObject [] objectsToSpawn;
     public float respawnTime;
     public Mesh spawnMesh;
 
@@ -31,13 +33,60 @@ public class GenericSpawner : MonoBehaviour
             countdown -= Time.deltaTime;
             if (countdown <= 0)
             {
-                spawnedObject = Instantiate(objectToSpawm, transform.position, transform.rotation) as GameObject;
+                spawnedObject = Instantiate(ChooseSpawnObject(), transform.position, transform.rotation) as GameObject;
 
                 countdown = respawnTime;
             }
 
         }
     }
+
+    public GameObject ChooseSpawnObject()
+    {
+        // var to hold spawn object
+        GameObject objectToSpawn;
+
+        // create a second parallel array - this holds the cutoffs (where it changes to the next type)
+        //              Thus, anything below this cutoff is a parallel weighted object
+        float[] CDFArray = new float[objectsToSpawn.Length];
+
+        //var to hold cumalitive density (total of weights so far)
+        float cumulativeDensity = 0;
+        //fill CDF Array with cutoffs
+        for (int i=0; i<objectsToSpawn.Length; i++)
+        {
+            //add this objects weight, so we know where the cutoff is
+            cumulativeDensity += objectsToSpawn[i].weight;
+            //Store that in the CDF Array
+            CDFArray[i] = cumulativeDensity;
+        }
+
+        //choose a random number up to the max cutoff
+        float rand = Random.Range(0.0f, cumulativeDensity);
+
+        //look through my CDF to find where our random number would fall -- which CDF index would it fall under 
+        /****Old one at a time method but it works
+        for (int i=0; i<CDFArray.Length; i++)
+        {
+            if (rand < CDFArray[i])
+            {
+                objectToSpawn = objectsToSpawn[i].objectToSpawn;
+                return objectToSpawn;
+            }
+        }
+        *************/
+        int selectedIndex = System.Array.BinarySearch(CDFArray, rand);
+
+        //if selected index is neg
+        if(selectedIndex < 0)
+        {
+            //it's not the exact value, we have to FLIP (bitwise not) the value to find te index we want
+            selectedIndex = ~selectedIndex;
+        }
+        objectToSpawn = objectsToSpawn[selectedIndex].objectToSpawn;
+        return objectToSpawn;
+    }
+
     private void OnDrawGizmosSelected()
     {
         

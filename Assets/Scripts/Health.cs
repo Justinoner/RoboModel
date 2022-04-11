@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -19,10 +20,11 @@ public class Health : MonoBehaviour
     void Start()
     {
         // start at max health
-        currentHealth = maxHealth;
+        //currentHealth = maxHealth;****
 
         //Do find cube
        // LameExplosion exploderTouse = GameObject.Find("Cube").GetComponent<LameExplosion>();
+        //
         //OnDie.AddListener(exploderTouse.Explode);
         
     }
@@ -30,10 +32,13 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(1);
-        }
+        Debug.Log("Current health" + currentHealth);
+        GameManager.instance.mainGameCanvas.UpdateHealthbar(currentHealth, maxHealth);
+
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+         //   TakeDamage(1);
+       // }
     }
     public void Heal ( float amountToHeal)
     {
