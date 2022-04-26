@@ -7,20 +7,33 @@ public class PlayerController : MonoBehaviour
     [Header("Player")]
     public Pawn pawn;
     public Camera playerCamera;
+    public int lives;
 
-   
+    public AudioSource Shoot_Sound;
+
+
     void Start()
     {
+        Shoot_Sound = GetComponent<AudioSource>();
+        //declares this is the player object once player is spawned
+        GameManager.instance.Player = this;
+
         //make sure cam is loaded
-        if (playerCamera == null) Debug.LogWarning("Error: No cam set!");
+        if (playerCamera == null)
+        {
+            Debug.LogWarning("Error: No cam set!");
+            playerCamera = FindObjectOfType<Camera>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (pawn == null) return;
+
         //send move command to pawn
         Vector3 moveVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-       
+
         //helps player move where they are facing
         moveVector = pawn.transform.InverseTransformDirection(moveVector);
 
@@ -41,31 +54,34 @@ public class PlayerController : MonoBehaviour
     private void GetButtonInputs()
     {
         if (Input.GetButtonDown("Fire1"))
-            if(pawn != null)
-        {
+            if (pawn != null)
+            {
                 if (pawn.weapon != null)
                 {
+
                     pawn.weapon.OnPulltrigger.Invoke();
 
                 }
-           
-        }
-        if(Input.GetButtonUp("Fire1"))
+
+            }
+        if (Input.GetButtonUp("Fire1"))
         {
+            Shoot_Sound.Play();
             pawn.weapon.OnReleaseTrigger.Invoke();
         }
-        if(Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2"))
         {
             pawn.weapon.OnAlternateAttackStart.Invoke();
         }
-        if(Input.GetButtonUp("Fire2"))
+        if (Input.GetButtonUp("Fire2"))
         {
             pawn.weapon.OnAlternateAttackEnd.Invoke();
         }
 
 
     }
-    void RotateToMouse(){
+    void RotateToMouse()
+    {
         //Create a plane object(mathematical reperesentaion of all points in 2d)
         Plane groundPlane;
 

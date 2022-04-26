@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
+
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] public GameObject pauseMenuUI;
@@ -10,7 +11,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] public bool isPaused;
 
     // Update is called once per frame
-   private void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -38,7 +39,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         AudioListener.pause = false;
         pauseMenuUI.SetActive(false);
-        isPaused = false; 
+        isPaused = false;
     }
     public void QuitGame()
     {
@@ -48,7 +49,9 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitToMenu()
     {
-        SceneManager.LoadScene("UITestScene");
+        
+        SceneManager.LoadSceneAsync("MainMenu");
+       
     }
 
 }

@@ -17,26 +17,31 @@ public class Weapon : MonoBehaviour
     [Header("States")]
     public bool isAutoFiring;
     [Header("Data")]
+    public Sprite Icon;
     public float fireDelay; //seconds between shots
     public float countdown;
     public float damageDone;
     public Transform RHPoint;
     public Transform LHPoint;
 
+
+
     // Start is called before the first frame update
     public virtual void Start()
     {
         countdown = fireDelay;
+
     }
 
     // Update is called once per frame
     public virtual void Update()
-        
+
     {
         //subract the time it took to play the last frame from our countdown
         countdown -= Time.deltaTime;
         if (isAutoFiring && countdown <= 0)
         {
+
             //shoot
             Shoot();
             //reset timer
@@ -45,6 +50,7 @@ public class Weapon : MonoBehaviour
     }
     public void Shoot()
     {
+
         OnShoot.Invoke();
     }
 

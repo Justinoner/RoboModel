@@ -32,11 +32,11 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Health otherHealth = other.GetComponent<Health>();
-        if(otherHealth != null)
+        if (otherHealth != null)
         {
             otherHealth.TakeDamage(damageDone);
         }
-        Debug.Log("Collides"+ other.name);
+        Debug.Log("Collides with " + other.name);
         Destroy(gameObject);
     }
 }

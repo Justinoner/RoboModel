@@ -17,7 +17,7 @@ public class LaserRifle : Weapon
     }
 
     // Update is called once per frame
-   public override void Update()
+    public override void Update()
     {
         // run the update function from parent
         base.Update();
@@ -30,7 +30,7 @@ public class LaserRifle : Weapon
         Debug.Log("zap zap zap");
         if (projectileScript != null)
         {
-            projectile.layer = gameObject.layer;
+            //projectile.layer = gameObject.layer;
             projectileScript.damageDone = damageDone;
             projectileScript.lifespan = projectileLifespan;
             projectileScript.moveSpeed = projectileMoveSpeed;

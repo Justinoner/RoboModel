@@ -7,13 +7,20 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public MenuManager menuManager;
+    
     public UICanvas mainGameCanvas;
     public float secondsRemaining;
     public float roundTimeInSeconds;
+    public Transform PlayerSpawn;
+    public int lives;
+
 
     [Header("Game Prefabs")]
     public UICanvas UIPrefab;
+    public PlayerController Player;
+    public GameObject PlayerPrefab;
+
+    [HideInInspector] public bool gameStart;
 
     private void Awake()
     {
@@ -32,39 +39,57 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Main menu
+        
         //start countdown
         secondsRemaining = roundTimeInSeconds;
-        
+
     }
 
     public void StartGame()
     {
-        //load gameplay scene
-        SceneManager.LoadScene("UIMainLevel");
-        //Set score to zero
-        //Spawn player
-        //turn on the enemy spawners
-        //instantiate UI
-        mainGameCanvas = Instantiate(UIPrefab) as UICanvas;
+        
 
     }
     public void LoadMainMenu()
     {
         //load main menu
-        SceneManager.LoadScene("UITestScene");
+        SceneManager.LoadScene("MainMenu");
     }
 
-    //endgame runs when the player is out of lives
-    public void EndGame()
+    
+    
+
+    public void HandlePersonKilled(GameObject killedObject)
     {
-        //send a command to stop the controller from controlling the player
-        //show GameOver overlay
+        if (killedObject == Player.gameObject && lives > 0)
+        {
+            lives--;
+            SpawnPlayer();
+
+            if (lives <= 0)
+            {
+                SceneManager.LoadScene(2);
+
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SpawnPlayer()
     {
-        //mainGameCanvas.UpdateCountdownTimer(secondsRemaining);
+        //Spawns player at designated spawn point
+        GameObject PlayerObject = Instantiate(PlayerPrefab, PlayerSpawn.position, PlayerSpawn.rotation) as GameObject;
+        Debug.Log("" + PlayerObject.name);
+        Player.pawn = PlayerObject.GetComponent<Pawn>();
+    }
+
+
+    public void Update()
+    {
+        if (!gameStart) return;
+        
     }
 }
+
+
+
+

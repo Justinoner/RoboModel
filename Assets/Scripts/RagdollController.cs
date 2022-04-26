@@ -24,7 +24,8 @@ public class RagdollController : MonoBehaviour
         ragdollRigidbodies.Remove(mainRigidbody);
         ragdollColliders.Remove(mainCollider);
 
-        if (isRagdoll) {
+        if (isRagdoll)
+        {
             ActivateRagdoll();
         }
         else
@@ -37,7 +38,7 @@ public class RagdollController : MonoBehaviour
     void Update()
     {
         //test code
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             ToggleRagdoll();
         }
@@ -56,11 +57,11 @@ public class RagdollController : MonoBehaviour
             DeactivateRagdoll();
         }
     }
-    
-    public void ActivateRagdoll ()
+
+    public void ActivateRagdoll()
     {
         //Turn Off all anim, rigid body, 
-        foreach ( Collider collider in ragdollColliders)
+        foreach (Collider collider in ragdollColliders)
         {
             collider.enabled = true;
         }
@@ -80,7 +81,7 @@ public class RagdollController : MonoBehaviour
 
     }
 
-    public void DeactivateRagdoll ()
+    public void DeactivateRagdoll()
     {
         //turn of colliders
         foreach (Collider collider in ragdollColliders)

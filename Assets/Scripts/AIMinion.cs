@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class AIMinion : AIController
 {
-    
+
     private Pawn pawn;
     private NavMeshAgent agent;
     public float maxShootingError = 0.1f;
@@ -53,7 +53,7 @@ public class AIMinion : AIController
                 ShootAtPlayer();
             }
         }
-        
+
     }
 
     public void RotateTowardsPlayer()
@@ -65,7 +65,7 @@ public class AIMinion : AIController
         //Rotate a little bit towards that rotation
         pawn.transform.rotation = Quaternion.RotateTowards(pawn.transform.rotation, lookRotation, pawn.rotateSpeed * Time.deltaTime);
 
-        
+
     }
     public void SetLeadVector()
     {
@@ -96,7 +96,7 @@ public class AIMinion : AIController
             //rotate back
             pawn.weapon.transform.Rotate(0, -shootingError, 0);
         }
-        
+
 
 
 

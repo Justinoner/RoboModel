@@ -9,7 +9,7 @@ public class WeaponPickup : Pickup
     // Start is called before the first frame update
     public override void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class WeaponPickup : Pickup
     public override void OnTriggerEnter(Collider other)
     {
         Pawn otherPawn = other.GetComponent<Pawn>();
-        if(otherPawn != null)
+        if (otherPawn != null)
         {
             otherPawn.EquipWeapon(weaponToPickup);
         }

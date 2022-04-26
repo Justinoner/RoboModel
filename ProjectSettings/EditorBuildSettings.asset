@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/UIMainLevel.unity
-    guid: 30add3a335e836c48864dab48bf27257
-  - enabled: 1
-    path: Assets/UITestScene.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 2b5f9554bffe7e8439aaba0f258c1135
+  - enabled: 1
+    path: Assets/Scenes/LevelOne.unity
+    guid: a92d6d72e0cc0734abb813a657a691e1
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 458d3c4169105904b9979dc14b6e717b
   m_configObjects: {}
